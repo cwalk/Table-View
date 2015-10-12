@@ -8,12 +8,30 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
+    
+    var cellContent = ["Mr. Incredible", "Mrs. Incredible", "Violet", "Dash", "Jack Jack"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    //Allows us to return an Integer which will be the # of rows in the section
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellContent.count
+    }
+    
+    //Defines the contents of each individual cell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+        
+        cell.textLabel?.text = cellContent[indexPath.row]
+        
+        return cell
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
